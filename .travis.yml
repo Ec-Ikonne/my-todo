@@ -1,0 +1,33 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t firsttravis .
+  - docker run -d firsttravis 
+  - docker ps -a
+
+before_script:
+  - docker build -t firsttravis .
+  - docker run -d -p 127.0.0.1:80:4567 firsttravis 
+  - docker ps -a
+
+after_success:
+# Login to Docker hub
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "DOCKER_HUB_ID" --password-stdin
+
+# push to Docker Hub
+  - docker-build -t firsttravis . push
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: sample travis
+  env:  SampleTravis-env
+  bucket_name: $S3_BUCKET_NAME
+  bucket_path: firsttravis
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
