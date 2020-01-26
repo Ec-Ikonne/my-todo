@@ -23,6 +23,7 @@ after_success:
   - docker-build -t firsttravis . push
 
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   region: us-east-1
   app: sample travis
