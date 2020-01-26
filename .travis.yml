@@ -20,7 +20,7 @@ after_success:
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "DOCKER_HUB_ID" --password-stdin
 
 # push to Docker Hub
-  - docker build -t firsttravis .
+  - docker build -t "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID" .
   - docker push "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID"
 
 deploy:
