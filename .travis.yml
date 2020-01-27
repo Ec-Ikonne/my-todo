@@ -17,13 +17,13 @@ before_script:
 
 after_success:
 
-  - docker build -t "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID" .
+  - docker build -t "$DOCKER_HUB_ID/firsttravis" .
 
 # Login to Docker hub
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
 # push to Docker Hub
-  - docker push "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID"
+  - docker push "$DOCKER_HUB_ID/firsttravis"
 
 deploy:
   skip_cleanup: true
