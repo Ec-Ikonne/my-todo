@@ -31,7 +31,7 @@ deploy:
   region: us-east-1
   app: sample travis
   env:  SampleTravis-env
-  bucket_name: arn:aws:s3:::elasticbeanstalk-us-east-1-073138203069
+  bucket_name: elasticbeanstalk-us-east-1-073138203069
   bucket_path: firsttravis
   on:
     branch: master
