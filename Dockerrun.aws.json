@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "myfirsttraviscontainer",
-      "image": "sirvineyard/myfirsttraviscontainer:latest",
+      "image": "sirvineyard/firsttravis:latest",
       "memory": 200,
       "essential": true,
 	  "portMappings": [
