@@ -16,11 +16,13 @@ before_script:
   - docker ps -a
 
 after_success:
+
+  - docker build -t "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID" .
+
 # Login to Docker hub
-  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "DOCKER_HUB_ID" --password-stdin
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
 # push to Docker Hub
-  - docker build -t "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID" .
   - docker push "$DOCKER_HUB_ID/firsttravis:$TRAVIS_JOB_ID"
 
 deploy:
